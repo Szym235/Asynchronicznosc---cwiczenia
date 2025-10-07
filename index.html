@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchroniczność</title>
+</head>
+<body>
+    <script>
+        //Ćwiczenie 1
+        setTimeout(() => {
+            console.log("Hello world!")
+        }, 3000);
+
+        //Ćwiczenie 2
+        const czlowiek = {name:"Marek"};
+        const pies = {name:123};
+
+        function readName(object)
+        {
+            try{
+                if(typeof(object.name) === "string")
+                {
+                    console.log("Imię to: " + object.name)
+                }
+                else
+                {
+                    throw new Error("Błędne imię");
+                }
+            }
+            catch(error)
+            {
+                console.log(error.message);
+            }
+        }
+
+        readName(czlowiek);
+        readName(pies);
+
+        //Ćwiczenie 3
+        function negateNumber(number, displayFunction)
+        {
+            negativeNumber = -number;
+            displayNumbers(number, negativeNumber);
+        }
+
+        function displayNumbers(number, negativeNumber)
+        {
+            console.log("Negative of " + number + " is " + negativeNumber)
+        }
+
+        negateNumber(1, displayNumbers);
+
+        //Ćwiczenie 4
+        function randomTask()
+        {
+            return new Promise((resolve, reject) =>{
+                random = Math.floor(Math.random() * 2);
+                if(random == 0){
+                    reject("Zadanie się nie powiodło");
+                }
+                else
+                {
+                    resolve("Zadanie się powiodło");
+                }
+            })
+        }
+
+        randomTask().then((message) => console.log(message)).catch((message) => console.log(message));
+    </script>
+</body>
+</html> 
